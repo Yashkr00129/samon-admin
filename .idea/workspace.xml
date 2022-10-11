@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51752cb4-5423-4f57-819f-91299f5120e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/tables/data/fordersTableData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/samonn.pem" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/popups/popupban.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/popups/popupban.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/popups/popupview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/popups/popupview.js" afterDir="false" />
@@ -16,6 +19,7 @@
       <change beforePath="$PROJECT_DIR$/src/layouts/tables/data/vendorsTableData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/tables/data/vendorsTableData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/tables/data/withdrawalsTableData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/tables/data/withdrawalsTableData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/tables/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/tables/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +81,7 @@
       <workItem from="1664807981491" duration="1222000" />
       <workItem from="1665340922227" duration="2042000" />
       <workItem from="1665368246917" duration="7657000" />
-      <workItem from="1665478583454" duration="12547000" />
+      <workItem from="1665478583454" duration="20009000" />
     </task>
     <servers />
   </component>

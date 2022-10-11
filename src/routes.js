@@ -86,6 +86,14 @@ const routes = [
   },
   {
     type: "collapse",
+    name: "Food Orders",
+    key: "foodorders",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/foodorders",
+    component: <Tables usertype="forder" />,
+  },
+  {
+    type: "collapse",
     name: "Regions",
     key: "regions",
     icon: <Icon fontSize="small">assignment</Icon>,

@@ -25,6 +25,7 @@ import productsTableData from "layouts/tables/data/productsTableData";
 import stuffsTableData from "layouts/tables/data/stuffsTableData";
 import pordersTableData from "layouts/tables/data/pordersTableData";
 import gordersTableData from "layouts/tables/data/gordersTableData";
+import fordersTableData from "layouts/tables/data/fordersTableData";
 import regionsTableData from "layouts/tables/data/regionsTableData";
 import withdrawalsTableData from "layouts/tables/data/withdrawalsTableData";
 
@@ -74,7 +75,6 @@ function Tables({ usertype }) {
   };
 
   useEffect(() => {
-    console.log(isChanged, "isChanged");
     async function getUsers() {
       const token = JSON.parse(sessionStorage.getItem("token"));
       const headers = { authorization: `Bearer ${token}` };
@@ -138,6 +138,8 @@ function Tables({ usertype }) {
       return restaurantsTableData(data, setIsChanged, regions);
     if (usertype === "rider")
       return ridersTableData(data, setIsChanged, open, setOpen);
+    if (usertype === "forder")
+      return fordersTableData(data, setIsChanged, riders);
   }
 
   if (data && data[users]) {
@@ -213,6 +215,7 @@ Tables.propTypes = {
     "stuff",
     "porder",
     "gorder",
+    "forder",
     "paymentrequest",
     "region",
     "withdrawal",
@@ -220,3 +223,8 @@ Tables.propTypes = {
 };
 
 export default Tables;
+
+// Host backend on  heroku
+// Get ssl certificate for ec2 instance
+
+// :5000

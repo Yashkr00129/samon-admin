@@ -1,24 +1,17 @@
+import { Button } from "@mui/material";
+import http from "../../../http-common";
+import MDBox from "../../../components/MDBox";
+import Popup from "../../popups/popupviewgorder";
 import React from "react";
-import MDBox from "components/MDBox";
-import Popup from "layouts/popups/popupvieworder";
-import Select from "react-select";
-import http from "http-common";
-
-const options = [
-  { value: "productdelivery", label: "Product" },
-  { value: "grocerydelivery", label: "Grocery" },
-  { value: "fooddelivery", label: "Food" },
-];
 
 export default function userData(data, setIsChanged, riders) {
-  console.log(riders);
-
-  const token = JSON.parse(sessionStorage.getItem("token"));
   const assignOrder = async (riderId, orderId) => {
+    const token = JSON.parse(sessionStorage.getItem("token"));
+
     const payload = {
       riderId,
       orderId,
-      orderModel: "Porder",
+      orderModel: "Forder",
     };
     const config = {
       headers: {
@@ -42,7 +35,7 @@ export default function userData(data, setIsChanged, riders) {
       { Header: "qty", accessor: "quantity", align: "center" },
       { Header: "actions", accessor: "action", align: "center" },
     ],
-    rows: data.orders.map((order, index) => ({
+    rows: data.forders.map((order, index) => ({
       sno: index + 1,
       orderedat: new Date(order.orderedAt).toDateString(),
       updatedat: new Date(order.updatedAt).toDateString(),
@@ -51,7 +44,7 @@ export default function userData(data, setIsChanged, riders) {
       rider: (
         <select
           onChange={(e) => assignOrder(e.target.value, order._id)}
-          defaultValue={order.rider?._id ? order.rider._id : "none"}
+          defaultValue={order.rider ? order.rider : "none"}
         >
           <option value="none">None</option>
           {riders.map((rider) => {
@@ -63,7 +56,7 @@ export default function userData(data, setIsChanged, riders) {
           })}
         </select>
       ),
-      seller: order.vendor?.fullName,
+      seller: order.grocer?.fullName,
       quantity: order.quantity,
       action: (
         <MDBox
@@ -73,10 +66,21 @@ export default function userData(data, setIsChanged, riders) {
           ml={{ xs: -1.5, sm: 0 }}
         >
           <MDBox mr={1}>
-            <Popup usertype="porder" {...order} setIsChanged={setIsChanged} />
+            <Popup usertype="gorder" {...order} setIsChanged={setIsChanged} />
           </MDBox>
         </MDBox>
       ),
     })),
   };
 }
+
+// Date seller shopper rider seller quantity
+
+const deleteRegion = async (id, setIsChanged) => {
+  const token = JSON.parse(sessionStorage.getItem("token"));
+  const headers = { authorization: `Bearer ${token}` };
+  const config = { headers };
+  const res = await http.delete(`/v1/region/deleteRegion/${id}`, config);
+  console.log(res.data);
+  setIsChanged(true);
+};

@@ -40,8 +40,8 @@ export default function userData(data, setIsChanged, riders) {
     ],
     rows: data.orders.map((order, index) => ({
       sno: index + 1,
-      orderedat: order.orderedAt,
-      updatedat: order.updatedAt,
+      orderedat: new Date(order.orderedAt).toDateString(),
+      updatedat: new Date(order.updatedAt).toDateString(),
       status: order.status,
       shopper: order.shopper?.fullName,
       rider: (
