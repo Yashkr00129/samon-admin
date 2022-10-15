@@ -4,11 +4,27 @@ import Popup from "layouts/popups/popupview";
 import BanPopup from "layouts/popups/popupban";
 import Icon from "@mui/material/Icon";
 import MDButton from "components/MDButton";
+import http from "../../../http-common";
 
 export default function userData(data, setIsChanged, regions) {
   const refetchQuery = () => {
     setIsChanged(true);
   };
+
+  const assignRegion = async (vendorId, regionId) => {
+    if (regionId === "none") return;
+    const token = JSON.parse(sessionStorage.getItem("token"));
+    const headers = { authorization: `Bearer ${token}` };
+    const config = { headers };
+    const res = await http.post(
+      `/v1/region/assignVendorRegion`,
+      {  vendorId, regionId },
+      config
+    );
+    console.log(res.data);
+    setIsChanged(true);
+  };
+
   return {
     columns: [
       { Header: "s no.", accessor: "sno", width: "10%", align: "left" },
@@ -16,6 +32,7 @@ export default function userData(data, setIsChanged, regions) {
       { Header: "phone", accessor: "phone", align: "center" },
       { Header: "email", accessor: "email", align: "center" },
       { Header: "status", accessor: "status", align: "center" },
+      { Header: "region", accessor: "assign", align: "center" },
       { Header: "active", accessor: "active", align: "center" },
       { Header: "actions", accessor: "action", align: "center" },
     ],
@@ -24,6 +41,21 @@ export default function userData(data, setIsChanged, regions) {
       name: vendor.fullName,
       phone: `+${vendor.phone}`,
       email: vendor.email,
+      assign: (
+        <>
+          <select
+            onChange={(e) => assignRegion(vendor._id, e.target.value)}
+            defaultValue={vendor.region?._id ? vendor.region._id : "none"}
+          >
+            <option value="none">None</option>
+            {regions.map((region) => (
+              <option key={region._id} value={region._id}>
+                {region.regionName}
+              </option>
+            ))}
+          </select>
+        </>
+      ),
       status:
         /* eslint-disable-next-line no-nested-ternary */
         vendor.status === "pending" ? (

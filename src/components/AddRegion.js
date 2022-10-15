@@ -33,7 +33,7 @@ export default function AddRegion() {
           color={"primary"}
           sx={{ marginBottom: "1rem" }}
         >
-          Add Product
+          Add Region
         </Typography>
         <Box sx={{ maxWidth: "700px", minWidth: "500px" }}>
           <Grid container spacing={2}>

@@ -15,14 +15,14 @@ export default function userData(data, setIsChanged, regions) {
     setIsChanged(true);
   };
 
-  const assignRegion = async (vendorId, regionId) => {
+  const assignRegion = async (grocerId, regionId) => {
     if (regionId === "none") return;
     const token = JSON.parse(sessionStorage.getItem("token"));
     const headers = { authorization: `Bearer ${token}` };
     const config = { headers };
     const res = await http.post(
       `/v1/region/assignGrocerRegion`,
-      { grocerId: vendorId, regionId },
+      { grocerId: grocerId, regionId },
       config
     );
     console.log(res.data);

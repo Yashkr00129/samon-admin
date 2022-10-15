@@ -55,10 +55,12 @@ export default function userData(data, setIsChanged) {
           mt={{ xs: 2, sm: 0 }}
           ml={{ xs: -1.5, sm: 0 }}
         >
-          <MDBox mr={1}>
-            <Button onClick={() => approve(withdrawal._id)}>Approve</Button>
-            <Button onClick={() => reject(withdrawal._id)}>Decline</Button>
-          </MDBox>
+          {withdrawal.status === "pending" ? (
+            <MDBox mr={1}>
+              <Button onClick={() => approve(withdrawal._id)}>Approve</Button>
+              <Button onClick={() => reject(withdrawal._id)}>Decline</Button>
+            </MDBox>
+          ) : null}
         </MDBox>
       ),
     })),

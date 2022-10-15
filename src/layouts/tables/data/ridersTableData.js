@@ -26,6 +26,9 @@ export default function userData(
   open = null,
   setOpen = null
 ) {
+  const refetchQuery = () => {
+    setIsChanged(true);
+  };
   const token = JSON.parse(sessionStorage.getItem("token"));
   const changeRole = async (riderId, riderRole) => {
     await http
@@ -66,7 +69,7 @@ export default function userData(
     rows: data.riders.map((rider, index) => ({
       sno: index + 1,
       name: rider.fullName,
-      phone: `+${rider.phone}`,
+      phone: `${rider.phone}`,
       email: rider.email,
       role: (
         <Select
@@ -164,7 +167,7 @@ export default function userData(
             ml={{ xs: -1.5, sm: 0 }}
           >
             <MDBox mr={1}>
-              <Popup usertype="rider" {...rider} />
+              <Popup usertype="rider" {...rider} refetchQuery={refetchQuery} />
               <BanPopup
                 usertype="rider"
                 userId={rider._id}

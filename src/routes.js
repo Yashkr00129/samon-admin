@@ -2,6 +2,7 @@ import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Icon from "@mui/material/Icon";
 import AddRegion from "./components/AddRegion";
+import CatagoryTable from "./layouts/tables/categoryTable"
 
 const routes = [
   {
@@ -107,6 +108,13 @@ const routes = [
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/withdrawals",
     component: <Tables usertype="withdrawal" />,
+  },{
+    type: "collapse",
+    name: "Catagories",
+    key: "catagories",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/catagories",
+    component: <CatagoryTable/>
   },
   {
     type: "collapse",

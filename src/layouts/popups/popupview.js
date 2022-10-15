@@ -28,6 +28,7 @@ export default function ViewPopup({
   const User = usertype.replace(/./, (c) => c.toUpperCase());
   const userIdKey = User.toLowerCase() + "Id";
   const token = JSON.parse(sessionStorage.getItem("token"));
+
   const handleApproval = async (status) => {
     try {
       await http.post(

@@ -45,7 +45,6 @@ export default function MenusPopup(props) {
   else
   {
     items.forEach((order) => {
-      console.log(order);
       listItems.push(
         <Collapsible trigger={`${order.product ?.productTitle || order.stuff ?.groceryTitle || order.dish ?.dishName} x ${order.quantity}`}>
           <div className="table" style={{display: "block"}}>

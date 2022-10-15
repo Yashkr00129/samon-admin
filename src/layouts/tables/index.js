@@ -31,6 +31,7 @@ import withdrawalsTableData from "layouts/tables/data/withdrawalsTableData";
 
 import { useEffect, useState } from "react";
 import http from "http-common";
+import Loading from "../../components/Loading";
 
 const style = {
   position: "absolute",
@@ -50,10 +51,13 @@ export const handleModal = (open, setOpen) => {
 
 function Tables({ usertype }) {
   const Users = usertype.replace(/./, (c) => c.toUpperCase()) + "s";
+
   let users =
     usertype === "porder" || usertype === "gorder" ? "orders" : usertype + "s";
+
   const title =
     usertype === "porder" || usertype === "gorder" ? "Orders" : Users;
+
   const [data, setData] = useState(null);
   const [isChanged, setIsChanged] = useState(null);
   const [open, setOpen] = useState(false);
@@ -197,6 +201,8 @@ function Tables({ usertype }) {
         <Footer />
       </DashboardLayout>
     );
+  } else {
+    return <Loading />;
   }
 }
 
@@ -224,7 +230,4 @@ Tables.propTypes = {
 
 export default Tables;
 
-// Host backend on  heroku
-// Get ssl certificate for ec2 instance
 
-// :5000

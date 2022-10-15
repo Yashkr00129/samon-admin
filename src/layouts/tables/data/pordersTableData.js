@@ -29,11 +29,13 @@ export default function userData(data, setIsChanged, riders) {
     alert("order assigned");
     setIsChanged(true);
   };
+  
+  const orders=data.orders.reverse()
 
   return {
     columns: [
       { Header: "s no.", accessor: "sno", align: "left" },
-      { Header: "ordered at", accessor: "orderedat", align: "center" },
+      // { Header: "ordered at", accessor: "orderedat", align: "center" },
       { Header: "updated at", accessor: "updatedat", align: "center" },
       { Header: "status", accessor: "status", align: "center" },
       { Header: "shopper", accessor: "shopper", align: "center" },
@@ -42,10 +44,11 @@ export default function userData(data, setIsChanged, riders) {
       { Header: "qty", accessor: "quantity", align: "center" },
       { Header: "actions", accessor: "action", align: "center" },
     ],
-    rows: data.orders.map((order, index) => ({
+    rows: orders.map((order, index) => ({
       sno: index + 1,
       orderedat: new Date(order.orderedAt).toDateString(),
-      updatedat: new Date(order.updatedAt).toDateString(),
+      // updatedat: new Date(order.updatedAt).toDateString(),
+      updatedat:order.updatedAt.slice(0,10),
       status: order.status,
       shopper: order.shopper?.fullName,
       rider: (
