@@ -11,6 +11,7 @@ export default function Loading() {
         height: "100vh",
         justifyContent: "center",
         alignItems: "center",
+        background: "none"
       }}
     >
       <CircularProgress />

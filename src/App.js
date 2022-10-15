@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 // react-router components
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import "App.css";
+import 'react-toastify/dist/ReactToastify.css';
+
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -23,6 +25,8 @@ import themeDark from "assets/theme-dark";
 
 // Material Dashboard 2 React routes
 import routes from "routes";
+
+import { ToastContainer } from "react-toastify";
 
 // Material Dashboard 2 React contexts
 import {
@@ -91,12 +95,14 @@ export default function App() {
 
       if (route.route) {
         return (
-          <Route
-            exact
-            path={route.route}
-            element={route.component}
-            key={route.key}
-          />
+          <>
+            <Route
+              exact
+              path={route.route}
+              element={route.component}
+              key={route.key}
+            />
+          </>
         );
       }
 

@@ -1,4 +1,4 @@
-import { Grid, Card, Button } from "@mui/material";
+import { Grid, Card, Button, Box } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
@@ -8,10 +8,25 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 import { ToastContainer, toast } from "react-toastify";
 
-
 import { useEffect, useState } from "react";
 import http from "http-common";
 import Loading from "../../components/Loading";
+
+const NotificationContainer = () => {
+  return (
+    <Box
+      sx={{
+        position: "fixed",
+        width: "100%",
+        height: "100vh",
+        top: 0,
+        left: 0,
+      }}
+    >
+      <ToastContainer />
+    </Box>
+  );
+};
 
 export default function CatagoryTable({ usertype }) {
   const [data, setData] = useState(null);
@@ -24,7 +39,6 @@ export default function CatagoryTable({ usertype }) {
       const headers = { authorization: `Bearer ${token}` };
       const config = { headers };
       const res = await http.get("/v1/category/getAllCategory", config);
-      console.log(res.data);
       setData(res.data);
       setIsChanged(true);
       setLoading(false);
@@ -33,10 +47,10 @@ export default function CatagoryTable({ usertype }) {
   }, [isChanged]);
 
   if (!loading) {
-    const { columns, rows } = getTableData(data,setData);
+    const { columns, rows } = getTableData(data, setData);
     return (
       <DashboardLayout>
-        <ToastContainer/>
+        <NotificationContainer />
         <DashboardNavbar />
         <MDBox pt={6} pb={3}>
           <Grid container spacing={6}>
@@ -78,7 +92,7 @@ export default function CatagoryTable({ usertype }) {
   }
 }
 
-const getTableData = (data,setData) => {
+const getTableData = (data, setData) => {
   return {
     columns: [
       { Header: "s no.", accessor: "sno", align: "left" },
@@ -97,19 +111,30 @@ const getTableData = (data,setData) => {
           style={{ width: "100px" }}
         />
       ),
-      keywords: category.keywords.map((keyword) => <p>{keyword}</p>),
-      delete: <Button variant={"contained"} onClick={()=>deleteCategory(category._id,data,setData,toast)}>Delete</Button>,
+      keywords: category.keywords.map((keyword) => (
+        <p key={keyword}>{keyword}</p>
+      )),
+      delete: (
+        <Button
+          variant={"contained"}
+          onClick={() => deleteCategory(category._id, data, setData, toast)}
+        >
+          Delete
+        </Button>
+      ),
     })),
   };
 };
 
-const deleteCategory = async (id, data,setData,toast) => {
+const deleteCategory = async (id, data, setData) => {
   try {
+    console.log(data)
+    const { categories } = data;
+    console.log(categories)
     const token = JSON.parse(sessionStorage.getItem("token"));
     const headers = { authorization: `Bearer ${token}` };
-    const config = { headers };
-    await http.delete(`/v1/category/deleteCategory/${id}`, config);
-    setData(data.filter((category) => category._id !== id));
+    await http.delete(`/v1/category/deleteCategory/${id}`, { headers });
+    setData({...data,categories:categories.filter((category) => category._id !== id)});
     toast.success("Category deleted successfully");
   } catch (err) {
     toast.error(err.message);

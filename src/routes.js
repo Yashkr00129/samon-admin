@@ -2,7 +2,12 @@ import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Icon from "@mui/material/Icon";
 import AddRegion from "./components/AddRegion";
-import CatagoryTable from "./layouts/tables/categoryTable"
+import CatagoryTable from "./layouts/tables/categoryTable";
+import TypeTable from "./layouts/tables/typeTable";
+import AddCategory from "./components/AddCategory";
+import AddType from "./components/AddType";
+import AddSubCategory from "components/AddSubCategory";
+import SubCategoryTable from "layouts/tables/subCategoryTable";
 
 const routes = [
   {
@@ -108,13 +113,30 @@ const routes = [
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/withdrawals",
     component: <Tables usertype="withdrawal" />,
-  },{
+  },
+  {
     type: "collapse",
     name: "Catagories",
     key: "catagories",
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/catagories",
-    component: <CatagoryTable/>
+    component: <CatagoryTable />,
+  },
+  {
+    type: "collapse",
+    name: "SubCategory",
+    key: "subcategory",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/subcategories",
+    component: <SubCategoryTable />,
+  },
+  {
+    type: "collapse",
+    name: "Types",
+    key: "types",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/types",
+    component: <TypeTable />,
   },
   {
     type: "collapse",
@@ -123,6 +145,22 @@ const routes = [
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/addregion",
     component: <AddRegion />,
+  },
+  {
+    type: "collapse",
+    name: "Add Category",
+    key: "addcategory",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/addcagtegory",
+    component: <AddCategory />,
+  },
+  {
+    type: "collapse",
+    name: "Add SubCategory",
+    key: "addsubcategory",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/addsubcategory",
+    component: <AddSubCategory />,
   },
 ];
 

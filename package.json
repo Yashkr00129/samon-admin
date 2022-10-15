@@ -49,6 +49,7 @@
     "react-scripts": "5.0.0",
     "react-select": "^5.4.0",
     "react-table": "7.7.0",
+    "react-toastify": "^9.0.8",
     "react-toggle-button": "^2.2.0",
     "reactjs-popup": "^2.0.5",
     "stylis": "4.0.13",
@@ -80,6 +81,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {}
+  }
 }
