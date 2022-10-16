@@ -14,27 +14,24 @@ export default function AddCategory() {
   });
 
   const handleSubmit = async () => {
-    try{
+    try {
       const token = JSON.parse(sessionStorage.getItem("token"));
       const headers = { authorization: `Bearer ${token}` };
 
-      // call api/upload to get upload url
-      // then change the payload accordingly
+      const body = new FormData();
+      body.append("files", formData.categoryImage);
+      const { data } = await http.post("/v1/upload", body, { headers });
 
-      const body=new FormData()
-      body.append("files",formData.categoryImage)
-      const {data}=await http.post("/v1/upload",body,{headers})
+      const payload = {
+        name: formData.categoryName,
+        image: data.data[0].Location,
+        keywords: formData.keywords.split(","),
+      };
 
-    const payload = {
-      name: formData.categoryName,
-      image: data.data[0].Location,
-      keywords: formData.keywords.split(","),
-    };
-    //
-    await http.post("/v1/category/addCategory", payload, { headers });
-    toast.success("Category Added Successfully");
-    }catch(err){
-        toast.error(err.message);
+      await http.post("/v1/category/addCategory", payload, { headers });
+      toast.success("Category Added Successfully");
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 
@@ -67,7 +64,15 @@ export default function AddCategory() {
               />
             </Grid>
             <Grid item sm={12}>
-              <input type="file" onChange={(e)=>{setFormData({...formData,categoryImage: e.target.files[0]})}}/>
+              <input
+                type="file"
+                onChange={(e) => {
+                  setFormData({
+                    ...formData,
+                    categoryImage: e.target.files[0],
+                  });
+                }}
+              />
             </Grid>
             <Grid item sm={12}>
               <TextField

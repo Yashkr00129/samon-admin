@@ -9,6 +9,12 @@ import AddType from "./components/AddType";
 import AddSubCategory from "components/AddSubCategory";
 import SubCategoryTable from "layouts/tables/subCategoryTable";
 
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import PublicIcon from "@mui/icons-material/Public";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import CategoryIcon from "@mui/icons-material/Category";
+import AddIcon from "@mui/icons-material/Add";
+
 const routes = [
   {
     type: "collapse",
@@ -62,7 +68,7 @@ const routes = [
     type: "collapse",
     name: "Products",
     key: "products",
-    icon: <Icon fontSize="small">login</Icon>,
+    icon: <ShoppingBagIcon />,
     route: "/products",
     component: <Tables usertype="product" />,
   },
@@ -70,7 +76,7 @@ const routes = [
     type: "collapse",
     name: "Groceries",
     key: "groceries",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <ShoppingBagIcon />,
     route: "/groceries",
     component: <Tables usertype="stuff" />,
   },
@@ -78,7 +84,7 @@ const routes = [
     type: "collapse",
     name: "Product Orders",
     key: "productorders",
-    icon: <Icon fontSize="small">login</Icon>,
+    icon: <Icon fontSize="small">assignment</Icon>,
     route: "/productorders",
     component: <Tables usertype="porder" />,
   },
@@ -102,7 +108,7 @@ const routes = [
     type: "collapse",
     name: "Regions",
     key: "regions",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <PublicIcon />,
     route: "/region",
     component: <Tables usertype="region" />,
   },
@@ -110,7 +116,7 @@ const routes = [
     type: "collapse",
     name: "Withdrawals",
     key: "withdrawals",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <CurrencyRupeeIcon />,
     route: "/withdrawals",
     component: <Tables usertype="withdrawal" />,
   },
@@ -118,7 +124,7 @@ const routes = [
     type: "collapse",
     name: "Catagories",
     key: "catagories",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <CategoryIcon />,
     route: "/catagories",
     component: <CatagoryTable />,
   },
@@ -126,7 +132,7 @@ const routes = [
     type: "collapse",
     name: "SubCategory",
     key: "subcategory",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <CategoryIcon />,
     route: "/subcategories",
     component: <SubCategoryTable />,
   },
@@ -134,7 +140,7 @@ const routes = [
     type: "collapse",
     name: "Types",
     key: "types",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <CategoryIcon />,
     route: "/types",
     component: <TypeTable />,
   },
@@ -142,7 +148,7 @@ const routes = [
     type: "collapse",
     name: "Add Region",
     key: "addregion",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <AddIcon />,
     route: "/addregion",
     component: <AddRegion />,
   },
@@ -150,7 +156,7 @@ const routes = [
     type: "collapse",
     name: "Add Category",
     key: "addcategory",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <AddIcon />,
     route: "/addcagtegory",
     component: <AddCategory />,
   },
@@ -158,9 +164,16 @@ const routes = [
     type: "collapse",
     name: "Add SubCategory",
     key: "addsubcategory",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <AddIcon />,
     route: "/addsubcategory",
     component: <AddSubCategory />,
+  }, {
+    type: "collapse",
+    name: "Add Type",
+    key: "addtype",
+    icon: <AddIcon />,
+    route: "/addtype",
+    component: <AddType />,
   },
 ];
 

@@ -128,13 +128,14 @@ const getTableData = (data, setData) => {
 
 const deleteCategory = async (id, data, setData) => {
   try {
-    console.log(data)
     const { categories } = data;
-    console.log(categories)
     const token = JSON.parse(sessionStorage.getItem("token"));
     const headers = { authorization: `Bearer ${token}` };
     await http.delete(`/v1/category/deleteCategory/${id}`, { headers });
-    setData({...data,categories:categories.filter((category) => category._id !== id)});
+    setData({
+      ...data,
+      categories: categories.filter((category) => category._id !== id),
+    });
     toast.success("Category deleted successfully");
   } catch (err) {
     toast.error(err.message);

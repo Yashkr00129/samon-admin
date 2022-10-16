@@ -52,7 +52,7 @@ export default function AddType() {
           color={"primary"}
           sx={{ marginBottom: "1rem" }}
         >
-          Add Category
+          Add Type
         </Typography>
         <Box sx={{ maxWidth: "700px", minWidth: "500px" }}>
           <Grid container spacing={2}>
@@ -86,7 +86,7 @@ export default function AddType() {
             sx={{ color: "white", my: "1rem" }}
             onClick={handleSubmit}
           >
-            Add Category
+            Add Type
           </Button>
         </Box>
       </MDBox>
