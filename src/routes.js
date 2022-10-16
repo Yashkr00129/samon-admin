@@ -109,7 +109,7 @@ const routes = [
     name: "Regions",
     key: "regions",
     icon: <PublicIcon />,
-    route: "/region",
+    route: "/regions",
     component: <Tables usertype="region" />,
   },
   {
@@ -133,7 +133,7 @@ const routes = [
     name: "SubCategory",
     key: "subcategory",
     icon: <CategoryIcon />,
-    route: "/subcategories",
+    route: "/subcategory",
     component: <SubCategoryTable />,
   },
   {
@@ -157,7 +157,7 @@ const routes = [
     name: "Add Category",
     key: "addcategory",
     icon: <AddIcon />,
-    route: "/addcagtegory",
+    route: "/addcategory",
     component: <AddCategory />,
   },
   {
