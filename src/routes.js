@@ -8,6 +8,7 @@ import AddCategory from "./components/AddCategory";
 import AddType from "./components/AddType";
 import AddSubCategory from "components/AddSubCategory";
 import SubCategoryTable from "layouts/tables/subCategoryTable";
+import TransportRequestsTable from "layouts/tables/transportRequests";
 
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import PublicIcon from "@mui/icons-material/Public";
@@ -111,6 +112,14 @@ const routes = [
     icon: <PublicIcon />,
     route: "/regions",
     component: <Tables usertype="region" />,
+  },
+  {
+    type: "collapse",
+    name: "Transport Requests",
+    key: "gettransportrequests",
+    icon: <PublicIcon />,
+    route: "/gettransportrequests",
+    component: <TransportRequestsTable />,
   },
   {
     type: "collapse",
