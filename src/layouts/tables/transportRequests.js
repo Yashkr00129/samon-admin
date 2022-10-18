@@ -96,17 +96,21 @@ const getTableData = (data, setData) => {
   return {
     columns: [
       { Header: "s no.", accessor: "sno", align: "left" },
-      { Header: "status", accessor: "status", align: "left" },
+      { Header: "name", accessor: "fullName", align: "left" },
+      { Header: "phoneNumber", accessor: "phoneNumber", align: "left" },
+
+      { Header: "pickup address", accessor: "pickupAddress", align: "left" },
+      { Header: "drop address", accessor: "dropAddress", align: "left" },
       { Header: "transport type", accessor: "transportType", align: "left" },
-      { Header: "destination", accessor: "destination", align: "left" },
-      { Header: "source", accessor: "source", align: "left" },
+
     ],
     rows: data.requests.map((request, index) => ({
       sno: index + 1,
-      status: request.status,
+      dropAddress: request.dropAddress,
+      fullName: request.fullName,
+      phoneNumber: request.phoneNumber,
+      pickupAddress: request.pickupAddress,
       transportType: request.transportType,
-      destination: request.destination,
-      source: request.source
     }))
   };
 }

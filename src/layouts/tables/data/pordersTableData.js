@@ -11,7 +11,6 @@ const options = [
 ];
 
 export default function userData(data, setIsChanged, riders) {
-  console.log(riders);
 
   const token = JSON.parse(sessionStorage.getItem("token"));
   const assignOrder = async (riderId, orderId) => {

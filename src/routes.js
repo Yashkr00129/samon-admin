@@ -9,6 +9,7 @@ import AddType from "./components/AddType";
 import AddSubCategory from "components/AddSubCategory";
 import SubCategoryTable from "layouts/tables/subCategoryTable";
 import TransportRequestsTable from "layouts/tables/transportRequests";
+import FordersTable from "layouts/tables/fOrdersTable"
 
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import PublicIcon from "@mui/icons-material/Public";
@@ -103,7 +104,7 @@ const routes = [
     key: "foodorders",
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/foodorders",
-    component: <Tables usertype="forder" />,
+    component: <FordersTable />,
   },
   {
     type: "collapse",

@@ -76,14 +76,3 @@ export default function userData(data, setIsChanged, riders) {
     })),
   };
 }
-
-// Date seller shopper rider seller quantity
-
-const deleteRegion = async (id, setIsChanged) => {
-  const token = JSON.parse(sessionStorage.getItem("token"));
-  const headers = { authorization: `Bearer ${token}` };
-  const config = { headers };
-  const res = await http.delete(`/v1/region/deleteRegion/${id}`, config);
-  console.log(res.data);
-  setIsChanged(true);
-};
