@@ -9,18 +9,17 @@ import DataTable from "examples/Tables/DataTable";
 import { ToastContainer, toast } from "react-toastify";
 import { Button, Modal, Typography } from "@mui/material";
 
-
 import { useEffect, useState } from "react";
 import http from "http-common";
 import Loading from "../../components/Loading";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
+  bgcolor: "background.paper",
   boxShadow: 24,
   borderRadius: "10px",
   p: 4,
@@ -46,20 +45,17 @@ export default function FordersTable() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
-  // Modal State management 
+  // Modal State management
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [riders, setRiders] = useState([])
+  const [riders, setRiders] = useState([]);
 
   const token = JSON.parse(sessionStorage.getItem("token"));
 
-
-
   useEffect(() => {
     const getData = async () => {
-      const token = JSON.parse(sessionStorage.getItem("token"));
+      setLoading(true);
       const headers = { authorization: `Bearer ${token}` };
       const config = { headers };
       const res = await http.get("/v1/admin/getAllForders", config);
@@ -68,22 +64,31 @@ export default function FordersTable() {
     };
 
     const fetchRiders = async () => {
-      setLoading(true)
+      setLoading(true);
       const { data } = await http.get("/v1/admin/getAllRiders", {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
       setRiders(data.riders);
-      setLoading(false)
+      setLoading(false);
     };
 
-    fetchRiders()
+    fetchRiders();
     getData();
   }, [token]);
 
   if (!loading) {
-    const { columns, rows } = getTableData({ data, setData, loading, setLoading, riders, handleOpen, open, handleClose });
+    const { columns, rows } = getTableData({
+      data,
+      setData,
+      loading,
+      setLoading,
+      riders,
+      handleOpen,
+      open,
+      handleClose,
+    });
     return (
       <DashboardLayout>
         <NotificationContainer />
@@ -103,7 +108,7 @@ export default function FordersTable() {
                   coloredShadow="info"
                 >
                   <MDTypography variant="h6" color="white">
-                    Catagories
+                    Food Orders
                   </MDTypography>
                 </MDBox>
                 <MDBox pt={3}>
@@ -149,8 +154,7 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
     alert("order assigned");
   };
 
-
-  const orders = data.forders.reverse()
+  const orders = data.forders.reverse();
   return {
     columns: [
       { Header: "s no.", accessor: "sno", align: "left" },
@@ -171,7 +175,7 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
         <select
           onChange={(e) => assignOrder(e.target.value, order._id)}
           // defaultValue={order.rider?._id ? order.rider._id : "none"}
-          defaultValue={order.rider._id ? order.rider._id : "none"}
+          value={order.rider._id ? order.rider._id : "none"}
         >
           <option value="none">No Rider Assigned</option>
           {riders.map((rider) => {
@@ -193,7 +197,9 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
           ml={{ xs: -1.5, sm: 0 }}
         >
           <MDBox mr={1}>
-            <Button variant="contained" onClick={handleOpen}>View</Button>
+            <Button variant="contained" onClick={handleOpen}>
+              View
+            </Button>
           </MDBox>
           <Modal
             open={open}
@@ -206,16 +212,16 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
                 Order Details
               </MDTypography>
               <p>OrderId:- {order._id}</p>
-              <p>Address:- {order.address.addressLine1}, {order.address.addressLine2}, {order.address.city}, {order.address.country}</p>
+              <p>
+                Address:- {order.address.addressLine1},{" "}
+                {order.address.addressLine2}, {order.address.city},{" "}
+                {order.address.country}
+              </p>
               <p>Phone:- {order.shopper.phone}</p>
               <p>Order Status:- {order.status}</p>
               <p>Shopper:- {order.shopper.fullName}</p>
               <p>Rider:- {order.rider.fullName}</p>
               <p>Seller:- {order.restaurant.fullName}</p>
-
-
-
-
             </Box>
           </Modal>
         </MDBox>
@@ -223,4 +229,3 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
     })),
   };
 };
-
