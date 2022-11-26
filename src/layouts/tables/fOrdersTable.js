@@ -108,7 +108,7 @@ export default function FordersTable() {
                   coloredShadow="info"
                 >
                   <MDTypography variant="h6" color="white">
-                    Food Orders
+                    Food Orders.
                   </MDTypography>
                 </MDBox>
                 <MDBox pt={3}>
