@@ -133,9 +133,6 @@ export default function FordersTable() {
   }
 }
 
-// During API Calls Set Loading to true.
-// Delete data from the table after api call is done.
-
 const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
   const assignOrder = async (riderId, orderId) => {
     const token = JSON.parse(sessionStorage.getItem("token"));
@@ -154,6 +151,7 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
     alert("order assigned");
   };
 
+  console.log(data.forders);
   const orders = data.forders.reverse();
   return {
     columns: [
@@ -175,7 +173,7 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
         <select
           onChange={(e) => assignOrder(e.target.value, order._id)}
           // defaultValue={order.rider?._id ? order.rider._id : "none"}
-          value={order.rider._id ? order.rider._id : "none"}
+          value={order.rider?._id ? order.rider._id : "none"}
         >
           <option value="none">No Rider Assigned</option>
           {riders.map((rider) => {
@@ -190,41 +188,43 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
       seller: order.restaurant?.fullName,
       quantity: order.quantity,
       action: (
-        <MDBox
-          display="flex"
-          alignItems="center"
-          mt={{ xs: 2, sm: 0 }}
-          ml={{ xs: -1.5, sm: 0 }}
-        >
-          <MDBox mr={1}>
-            <Button variant="contained" onClick={handleOpen}>
-              View
-            </Button>
-          </MDBox>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+        <>
+          <MDBox
+            display="flex"
+            alignItems="center"
+            mt={{ xs: 2, sm: 0 }}
+            ml={{ xs: -1.5, sm: 0 }}
           >
-            <Box sx={style}>
-              <MDTypography id="modal-modal-title" variant="h6" component="h2">
-                Order Details
-              </MDTypography>
-              <p>OrderId:- {order._id}</p>
-              <p>
-                Address:- {order.address.addressLine1},{" "}
-                {order.address.addressLine2}, {order.address.city},{" "}
-                {order.address.country}
-              </p>
-              <p>Phone:- {order.shopper.phone}</p>
-              <p>Order Status:- {order.status}</p>
-              <p>Shopper:- {order.shopper.fullName}</p>
-              <p>Rider:- {order.rider.fullName}</p>
-              <p>Seller:- {order.restaurant.fullName}</p>
-            </Box>
-          </Modal>
-        </MDBox>
+            <MDBox mr={1}>
+              <Button variant="contained" onClick={handleOpen}>
+                View
+              </Button>
+            </MDBox>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <MDTypography id="modal-modal-title" variant="h6" component="h2">
+                  Order Details
+                </MDTypography>
+                <p>OrderId:- {order._id}</p>
+                <p>
+                  Address:- {order.address.addressLine1},{" "}
+                  {order.address.addressLine2}, {order.address.city},{" "}
+                  {order.address.country}
+                </p>
+                <p>Phone:- {order.shopper?.phone}</p>
+                <p>Order Status:- {order.status}</p>
+                <p>Shopper:- {order.shopper?.fullName}</p>
+                <p>Rider:- {order.rider?.fullName}</p>
+                {/*<p>Seller:- {order.restaurant.fullName}</p>*/}
+              </Box>
+            </Modal>
+          </MDBox>
+        </>
       ),
     })),
   };

@@ -1,16 +1,12 @@
 {
-  "name": "material-dashboard-2-react",
-  "version": "2.1.0",
-  "private": true,
-  "author": "Creative Tim",
-  "license": "See license in https://www.creative-tim.com/license",
-  "description": "React version of Material Dashboard 2 by Creative Tim",
-  "bugs": {
-    "url": "https://github.com/creativetimofficial/material-dashboard-react/issues"
-  },
+  "name": "samon-admin-panel",
+  "version": "1.0.0",
+  "author": "Yash Sharma",
+  "license": "MIT",
+  "description": "Admin panel for samonwala.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/material-dashboard-react.git"
+    "url": "https://github.com/Yashkr00129/samon-admin.git"
   },
   "engines": {
     "node": "14 || 15 || 16",
