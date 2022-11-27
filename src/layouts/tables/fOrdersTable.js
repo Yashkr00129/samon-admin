@@ -55,31 +55,32 @@ export default function FordersTable() {
 
   useEffect(() => {
     const getData = async () => {
-      setLoading(true);
       const headers = { authorization: `Bearer ${token}` };
       const config = { headers };
       const res = await http.get("/v1/admin/getAllForders", config);
       setData(res.data);
-      setLoading(false);
     };
 
     const fetchRiders = async () => {
-      setLoading(true);
       const { data } = await http.get("/v1/admin/getAllRiders", {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
       setRiders(data.riders);
-      setLoading(false);
     };
 
-    fetchRiders();
-    getData();
-  }, [token]);
-
+    const loadPage = async () => {
+      setLoading(true);
+      fetchRiders();
+      getData();
+      setLoading(false);
+    };
+    loadPage();
+  }, []);
 
   if (loading === false) {
+
     const { columns, rows } = getTableData({
       data,
       setData,
@@ -90,6 +91,7 @@ export default function FordersTable() {
       open,
       handleClose,
     });
+
     return (
       <DashboardLayout>
         <NotificationContainer />
