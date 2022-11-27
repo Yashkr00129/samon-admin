@@ -72,8 +72,8 @@ export default function FordersTable() {
 
     const loadPage = async () => {
       setLoading(true);
-      fetchRiders();
-      getData();
+      await fetchRiders();
+      await getData();
       setLoading(false);
     };
     loadPage();
