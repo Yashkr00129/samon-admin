@@ -78,7 +78,8 @@ export default function FordersTable() {
     getData();
   }, [token]);
 
-  if (!loading) {
+
+  if (loading === false) {
     const { columns, rows } = getTableData({
       data,
       setData,
@@ -151,7 +152,6 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
     alert("order assigned");
   };
 
-  console.log(data.forders);
   const orders = data.forders.reverse();
   return {
     columns: [
@@ -185,7 +185,7 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
           })}
         </select>
       ),
-      seller: order.restaurant?.fullName,
+      seller: order?.restaurant?.fullName,
       quantity: order.quantity,
       action: (
         <>
@@ -207,17 +207,21 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                <MDTypography id="modal-modal-title" variant="h6" component="h2">
+                <MDTypography
+                  id="modal-modal-title"
+                  variant="h6"
+                  component="h2"
+                >
                   Order Details
                 </MDTypography>
-                <p>OrderId:- {order._id}</p>
+                <p>OrderId:- {order?._id}</p>
                 <p>
                   Address:- {order.address.addressLine1},{" "}
-                  {order.address.addressLine2}, {order.address.city},{" "}
-                  {order.address.country}
+                  {order?.address?.addressLine2}, {order?.address?.city},{" "}
+                  {order?.address?.country}
                 </p>
                 <p>Phone:- {order.shopper?.phone}</p>
-                <p>Order Status:- {order.status}</p>
+                <p>Order Status:- {order?.status}</p>
                 <p>Shopper:- {order.shopper?.fullName}</p>
                 <p>Rider:- {order.rider?.fullName}</p>
                 {/*<p>Seller:- {order.restaurant.fullName}</p>*/}
