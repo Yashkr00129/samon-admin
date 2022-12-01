@@ -235,3 +235,4 @@ const getTableData = ({ data, riders, handleOpen, open, handleClose }) => {
     })),
   };
 };
+

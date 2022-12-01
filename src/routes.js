@@ -16,6 +16,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import CategoryIcon from "@mui/icons-material/Category";
 import AddIcon from "@mui/icons-material/Add";
+import AddBanner from "./components/AddBanner";
 
 const routes = [
   {
@@ -184,6 +185,13 @@ const routes = [
     icon: <AddIcon />,
     route: "/addtype",
     component: <AddType />,
+  },{
+    type: "collapse",
+    name: "Add Banner",
+    key: "addbanner",
+    icon: <AddIcon />,
+    route: "/addbanner",
+    component: <AddBanner />,
   },
 ];
 
