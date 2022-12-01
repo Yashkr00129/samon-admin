@@ -14,8 +14,6 @@ export default function AddBanner() {
     link: "",
   });
 
-  const [loading, setLoading] = useState(false);
-
   const handleSubmit = async () => {
     try {
       const token = JSON.parse(sessionStorage.getItem("token"));
@@ -24,6 +22,7 @@ export default function AddBanner() {
       // call api/upload to get upload url
       // then change the payload accordingly
 
+      toast.info("Creating Banner");
       const body = new FormData();
       body.append("files", formData.categoryImage);
       const { data } = await http.post("/v1/upload", body, { headers });
@@ -35,6 +34,11 @@ export default function AddBanner() {
       };
 
       await http.post("/v1/admin/banner", payload, { headers });
+      setFormData({
+        no: "",
+        categoryImage: "",
+        link: "",
+      });
       toast.success("Banner Added Successfully");
     } catch (err) {
       toast.error(err.message);
@@ -49,7 +53,6 @@ export default function AddBanner() {
     <DashboardLayout>
       <ToastContainer />
       <DashboardNavbar />
-      {loading && <Loading />}
       <MDBox>
         <Typography
           variant={"h3"}

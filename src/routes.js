@@ -1,6 +1,5 @@
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
-import Icon from "@mui/material/Icon";
 import AddRegion from "./components/AddRegion";
 import CatagoryTable from "./layouts/tables/categoryTable";
 import TypeTable from "./layouts/tables/typeTable";
@@ -10,13 +9,16 @@ import AddSubCategory from "components/AddSubCategory";
 import SubCategoryTable from "layouts/tables/subCategoryTable";
 import TransportRequestsTable from "layouts/tables/transportRequests";
 import FordersTable from "layouts/tables/fOrdersTable"
+import Banners from "./components/Banners";
+import AddBanner from "./components/AddBanner";
 
+import Icon from "@mui/material/Icon";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import PublicIcon from "@mui/icons-material/Public";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import CategoryIcon from "@mui/icons-material/Category";
 import AddIcon from "@mui/icons-material/Add";
-import AddBanner from "./components/AddBanner";
+import FlagIcon from '@mui/icons-material/Flag';
 
 const routes = [
   {
@@ -122,6 +124,15 @@ const routes = [
     icon: <PublicIcon />,
     route: "/gettransportrequests",
     component: <TransportRequestsTable />,
+  },
+  {
+    type: "collapse",
+    name: "Banners",
+    key: "banners",
+    icon: <FlagIcon />,
+    route: "/banners",
+    component: <Banners/>
+
   },
   {
     type: "collapse",
